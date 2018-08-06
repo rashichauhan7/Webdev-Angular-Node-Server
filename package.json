@@ -1,0 +1,25 @@
+{
+  "name": "angular-server",
+  "version": "1.0.0",
+  "description": "node server for student",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rashichauhan7/Webdev-Angular-Node-Server.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rashichauhan7/Webdev-Angular-Node-Server/issues"
+  },
+  "homepage": "https://github.com/rashichauhan7/Webdev-Angular-Node-Server#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "express-session": "^1.15.6",
+    "mongoose": "^5.2.6"
+  }
+}
