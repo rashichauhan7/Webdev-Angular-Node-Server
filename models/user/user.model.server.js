@@ -3,6 +3,9 @@ var userSchema  = require('./user.schema.server');
 
 var userModel = mongoose.model('UserModel', userSchema);
 
+function findUserByUsername(username) {
+    return userModel.findOne({username: username});
+}
 
 function createUser(user)
 {
@@ -47,7 +50,8 @@ var api = {
     findUserByIdExpanded: findUserByIdExpanded,
     findUserById: findUserById,
     register: register,
-    updateUser: updateUser
+    updateUser: updateUser,
+    findUserByUsername: findUserByUsername
 };
 
 module.exports = api;
