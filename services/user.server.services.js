@@ -1,7 +1,7 @@
 
 module.exports = function (app) {
     app.get('/api/user', findAllUsers)
-    app.post('/api/user', findUserbyUsername);
+    app.post('/api/user', findUserByUsername);
     app.post('/api/login', login);
     app.get('/api/logout', logout);
     app.get ('/api/currentUser', currentUser);
@@ -21,7 +21,7 @@ module.exports = function (app) {
     }
 
 
-    function findUserbyUsername(req, res) {
+    function findUserByUsername(req, res) {
         userModel.findUserByUsername(req.body)
             .then(user => res.send(user))
     }
