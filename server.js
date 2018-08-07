@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/webdev-angular-db');
 
 app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "https://webdev-angular-client-4.herokuapp.com");
+    res.header("Access-Control-Allow-Origin", "https://webdev-angular-client-4.herokuapp.com", "http://localhost:4200");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     res.header("Access-Control-Allow-Credentials", "true");
     res.header("Access-Control-Allow-Methods", 'PUT, POST, GET, DELETE, OPTIONS');
