@@ -23,7 +23,11 @@ module.exports = function (app) {
 
     function findUserByUsername(req, res) {
         userModel.findUserByUsername(req.body)
-            .then(user => res.send(user))
+            .then(user => {
+                if(user)
+                    res.send(user);
+                else
+                    res.send({msg:"User not found"}) })
     }
     function createUser(req,res) {
         userModel.createUser(req.body)
