@@ -31,6 +31,25 @@ module.exports = function(app) {
     }
    )
 
+    app.post('/api/student/:sid/section/:sectionId/unenroll', (req, res) => {
+            var sectionId = req.params['sectionId'];
+            var studentId = req.params['sid'];
+            var enrollment = {
+                student: studentId,
+                section: sectionId
+            };
+            sectionModel
+                .incrementSectionSeats(sectionId)
+                .then(function () {
+                    return enrollmentModel
+                        .unenrollStudentInSection(enrollment)
+                })
+                .then(function (enrollment) {
+                    res.json(enrollment);
+                })
+        }
+    )
+
     app.get('/api/course/:courseId/section', (req, res) =>
         sectionModel
             .findAllSectionsForCourse(req.params['courseId'])
@@ -41,5 +60,18 @@ module.exports = function(app) {
         sectionModel
             .createSection(req.body)
             .then(section => res.send(section))
+    )
+    app.put('/api/course/:courseId/section', (req, res) =>
+        sectionModel
+            .updateSection(req.body)
+            .then(section => res.send(section))
+    )
+
+    app.delete('/api/course/:courseId/section/:sectionId', (req, res) =>
+    sectionModel.deleteSection(req.params['sectionId'])
+        .then(() => {
+            enrollmentModel.deleteEnrollment(req.params['sectionId']);
+            res.send(200)
+        })
     )
 };

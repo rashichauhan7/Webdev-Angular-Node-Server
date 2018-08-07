@@ -3,6 +3,7 @@ module.exports = function (app) {
     app.get('/api/user', findAllUsers)
     app.post('/api/user', createUser);
     app.post('/api/login', login);
+    app.get('/api/logout', logout);
     app.get ('/api/currentUser', currentUser);
     app.post('/api/register', createUser);
     app.post('/api/profile', updateUser);
@@ -15,7 +16,7 @@ module.exports = function (app) {
             userModel.findUserByIdExpanded(currentUser._id)
                 .then(user => res.send(user))
         } else {
-            res.sendStatus(403)
+            res.send({msg:"Forbidden"});
         }
     }
 
@@ -49,6 +50,13 @@ module.exports = function (app) {
                 }
 
             })
+    }
+
+    function logout(req, res) {
+
+        req.session.destroy();
+        req.sessionStore.destroy();
+        res.send(200);
     }
 
     function updateUser(req, res){

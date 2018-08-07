@@ -22,15 +22,10 @@ function register(user) {
 }
 
 function updateUser(user) {
-    var query = {'username':user.username};
 
-     return userModel.findOneAndUpdate(query, user, {upsert:true},
-        function(err, doc) {
-            if (err)
-                console.log(err);
-            return "succesfully saved";
-        }
-    );
+    return userModel.findOneAndUpdate({_id: user._id},{
+        $set: user
+    });
 }
 
 function findUserById(userId)

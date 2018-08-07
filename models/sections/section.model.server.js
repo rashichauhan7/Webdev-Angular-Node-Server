@@ -13,6 +13,17 @@ findAllSectionsForCourse = courseId =>
 createSection = section =>
     sectionModel.create(section);
 
+deleteSection = sectionId =>
+    sectionModel.findOneAndRemove({_id: sectionId}, function(err)
+    {
+        console.log(err)
+    });
+
+updateSection = section =>
+    sectionModel.update({_id: section._id}, {
+        $set: section}
+        )
+
 decrementSectionSeats = (sectionId)  =>
 
     sectionModel.update({
@@ -34,5 +45,7 @@ module.exports = {
     findAllSectionsForCourse,
     createSection,
     decrementSectionSeats,
-    incrementSectionSeats
+    incrementSectionSeats,
+    deleteSection,
+    updateSection
 };
