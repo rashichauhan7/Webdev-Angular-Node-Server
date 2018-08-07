@@ -3,8 +3,8 @@ var userSchema  = require('./user.schema.server');
 
 var userModel = mongoose.model('UserModel', userSchema);
 
-function findUserByUsername(username) {
-    return userModel.findOne({username: username});
+function findUserByUsername(user) {
+    return userModel.findOne({username: user.username});
 }
 
 function createUser(user)
