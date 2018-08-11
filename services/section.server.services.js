@@ -72,6 +72,6 @@ module.exports = function(app) {
         .then(() => {
             enrollmentModel.deleteEnrollment(req.params['sectionId']);
             res.send(200)
-        })
+        }) 
     )
 };
