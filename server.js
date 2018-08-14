@@ -2,8 +2,8 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 const mongoose = require('mongoose');
-// mongoose.connect('mongodb://angular-node-server-db:1234abcd5678@ds031711.mlab.com:31711/heroku_10j4c4gx');
-mongoose.connect('mongodb://localhost/webdev-angular-db');
+mongoose.connect('mongodb://angular-node-server-db:1234abcd5678@ds031711.mlab.com:31711/heroku_10j4c4gx');
+// mongoose.connect('mongodb://localhost/webdev-angular-db');
 
 var app = express();
 app.use(function(req, res, next) {
@@ -30,10 +30,12 @@ app.get('/', function(req, res) {
 
 
 var userService  = require('./services/user.server.services');
-userService(app);
 var schemaService = require('./services/section.server.services');
 var quizService = require('./services/quiz.server.service');
+var questionService = require('./services/question.service.server');
+userService(app);
 schemaService(app);
+questionService(app);
 quizService(app);
 app.listen(process.env.PORT || 3000)
 // app.listen(4000);

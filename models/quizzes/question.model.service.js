@@ -11,8 +11,15 @@ findAllQuestions = () =>
 findQuestionById = questionId =>
     questionModel.findById(questionId)
 
+updateQuestion = (questionId, question) =>
+    questionModel.update({_id: questionId},
+        {
+            $set: question
+        })
+
 module.exports = {
     createQuestion,
     findAllQuestions,
-    findQuestionById
+    findQuestionById,
+    updateQuestion,
 }
